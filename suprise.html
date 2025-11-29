@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Senin için 🌸</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #ffe6f2 0%, #ffb3d9 35%, #ff8fb8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4a0033;
+    }
+
+    .message-container {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 24px 32px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 24px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      max-width: 480px;
+    }
+
+    .message-container h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .message-container p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .heart {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      animation: pulse 1.5s infinite;
+      display: inline-block;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    /* Çiçekler */
+    .flower {
+      position: fixed;
+      top: -10vh;
+      font-size: 1.8rem;
+      pointer-events: none;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(0, 110vh, 0) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message-container">
+    <div class="heart">💗</div>
+    <h1>Senin için çiçek yağmuru 🌸</h1>
+    <p>
+      Karım sana güzel bi jest yapmak istedim Seni çok seviyorum iyi ki benimlesin hatunum iyikim.<br>
+      Sen hayatımda açan en güzel çiçeksin. 💐
+    </p>
+  </div>
+
+  <script>
+    // Burayı istersen kişiselleştir: kaç çiçek olsun?
+    const FLOWER_COUNT = 40;
+
+    function createFlower() {
+      const flower = document.createElement("span");
+      flower.classList.add("flower");
+
+      // Emoji/karışık çiçekler
+      const flowers = ["🌸", "🌺", "🌷", "💐", "🌹"];
+      flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+
+      // Rastgele yatay konum
+      const startLeft = Math.random() * 100; // yüzde cinsinden
+      flower.style.left = startLeft + "vw";
+
+      // Rastgele boyut
+      const size = 1.4 + Math.random() * 1.4; // 1.4–2.8 rem
+      flower.style.fontSize = size + "rem";
+
+      // Rastgele animasyon süresi ve gecikme
+      const duration = 8 + Math.random() * 6; // 8–14 saniye
+      const delay = Math.random() * 5;        // 0–5 saniye
+      flower.style.animationDuration = duration + "s";
+      flower.style.animationDelay = delay + "s";
+
+      // Yatayda hafif salınsın diye küçük bir translateX ekleyebiliriz
+      flower.style.setProperty(
+        "animation-name",
+        "fall"
+      );
+
+      document.body.appendChild(flower);
+    }
+
+    for (let i = 0; i < FLOWER_COUNT; i++) {
+      createFlower();
+    }
+  </script>
+</body>
+</html>
